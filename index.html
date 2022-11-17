@@ -1803,20 +1803,60 @@
                     const url =  URL.createObjectURL(blob);
 
 
-                    const pictureSymbol = {
+                    const coneSymbol = {
                         type: "picture-marker",  // autocasts as new PictureMarkerSymbol()
-                        url: "1.jpg",
-                        width: "16px",
-                        height: "16px"
+                        url: "1.svg",
+                        width: "32px",
+                        height: "32px"
+                    }
+
+                    const diamondSymbol = {
+                        type: "picture-marker",  // autocasts as new PictureMarkerSymbol()
+                        url: "2.svg",
+                        width: "32px",
+                        height: "32px"
+                    }
+
+                    const cubeSymbol = {
+                        type: "picture-marker",  // autocasts as new PictureMarkerSymbol()
+                        url: "3.svg",
+                        width: "32px",
+                        height: "32px"
+                    }
+
+                    const globesSymbol = {
+                        type: "picture-marker",  // autocasts as new PictureMarkerSymbol()
+                        url: "4.svg",
+                        width: "32px",
+                        height: "32px"
                     }
 
                     
 
                     const simpleRenderer = {
                     type: "simple",
-                    symbol: pictureSymbol
+                    symbol: coneSymbol
                     ,
                     };
+
+                    const uniqueRenderer = {
+                        type: "unique-value",
+                        field:"sensor_type",
+                        defaultSymbol: {type:"simple-fill"},
+                        uniqueValueInfos: [{
+                            value:"a",
+                            symbol: coneSymbol
+                        },{
+                            value:"b",
+                            symbol: diamondSymbol
+                        },{
+                            value:'c',
+                            symbol: cubeSymbol
+                        },{
+                            value:'d',
+                            symbol:globesSymbol
+                        }]
+                    }
 
                     /* {
                         type: "simple-marker",
@@ -1830,7 +1870,7 @@
 
                     const layer = new GeoJSONLayer({
                         url,
-                        renderer: simpleRenderer
+                        renderer: uniqueRenderer
                     });
 
                     console.log({layer})
